@@ -261,6 +261,225 @@ if ($_SESSION['id_user'] == 1) {
         </div>
     </div>
 
+    <!------------------------------------------------------------------CRUD GURU--------------------------------------------------------->
+
+    <div class="card my-3">
+            <div class="card-header text_dark">
+                <h1 style="font-weight:bolder;">Dashboard Data Guru</h1>
+            </div>
+            <div class="card-body">
+
+                <button type="button" class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#modalTambahGuru" style="width:10%">
+                + Data Guru</button>
+
+                <table class="table table-striped table-bordered table-hover">
+                    <tr>
+                        <th>NO</th>
+                        <th>NIP</th>
+                        <th>NAMA</th>
+                        <th>TEMPAT LAHIR</th>
+                        <th>TANGGAL LAHIR</th>
+                        <th>JENIS KELAMIN</th>
+                        <th>AGAMA</th>
+                        <th>MATA PELAJARAN</th>
+                        <th>ALAMAT</th>
+                        <th>AKSI</th>
+                    </tr>
+                    <?php        
+                        $number = 1;
+                        $tampilGuru = mysqli_query($connection,"SELECT * FROM guru ORDER BY id_guru DESC");
+                        while($dataGuru = mysqli_fetch_array($tampilGuru)) :
+                        ?>
+                    <tr>
+                        <td><?= $number++ ?>.</td>
+                        <td><?= $dataGuru['nip']?></td>
+                        <td><?= $dataGuru['nama']?></td>
+                        <td><?= $dataGuru['tempat_lahir']?></td>
+                        <td><?= $dataGuru['tgl_lahir']?></td>
+                        <td><?= $dataGuru['jenis_kelamin']?></td>
+                        <td><?= $dataGuru['agama']?></td>
+                        <td><?= $dataGuru['mapel']?></td>
+                        <td><?= $dataGuru['alamat']?></td>
+                        <td>
+                            <center>
+                            <a class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalEditGuru<?= $number ?>">Ubah</a>
+                            <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalHapusGuru<?= $number ?>">Hapus</a>
+                            </center>
+                        </td>
+                    </tr>
+
+        <div class="modal fade" id="modalEditGuru<?= $number ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria_labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Data Siswa</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="proses.php" method="post">
+                    <input type="hidden" class="form-control" name="id_guru" value="<?= $data['id_guru'] ?>">
+                        <div class="row">
+
+                        <div class="col">
+                        <div class="mb-3">
+                            <label for="Lnip" class="form-label">NIP</label>
+                            <input type="number" class="form-control" name="nip" value="<?= $dataGuru['nip'] ?>" id="Lnip" placeholder="Masukan NIP Guru" autocomplete="off">
+                        </div>
+                        <div class="mb-3">
+                            <label for="Lnama" class="form-label">NAMA</label>
+                            <input type="text" class="form-control" name="nama" id="Lnama" value="<?= $dataGuru['nama'] ?>" placeholder="Masukan Nama Guru" autocomplete="off">
+                        </div>
+                        <label for="LtempatLahir" class="form-label">TEMPAT LAHIR</label>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" name="tempat_lahir" id="LtempatLahir" value="<?= $dataGuru['tempat_lahir'] ?>" placeholder="Masukan Tempat Lahir" autocomplete="off">
+                        </div>
+                        <div class="mb-3">
+                            <label for="LtglLahir" class="form-label">TANGGAL LAHIR</label>
+                            <input type="date" class="form-control" name="tgl_lahir" id="LtglLahir"  value="<?= $data['tgl_lahir'] ?>" autocomplete="off">
+                        </div>
+                        </div>
+
+                        <div class="col">
+                        <div class="mb-3">
+                            <label for="Ljk" class="form-label">JENIS KELAMIN</label>
+                            <select name="jenis_kelamin" class="form-select" id="Ljk" placeholder="Pilih Jenis Kelamin" autocomplete="off">
+                                <option selected value="<?= $dataGuru['jenis_kelamin'] ?>"><?= $dataGuru['jenis_kelamin'] ?></option>
+                                <option value="Laki-laki">Laki-laki</option>
+                                <option value="Perempuan">Perempuan</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="Lagama" class="form-label">AGAMA</label>
+                            <select name="agama" id="Lagama" class="form-select" placeholder="Pilih Agama Guru" autocomplete="off">
+                                <option selected value="<?= $dataGuru['agama'] ?>"><?= $dataGuru['agama'] ?></option>
+                                <option value="Islam">Islam</option>
+                                <option value="Kristen Katolik">Kristen Katolik</option>
+                                <option value="Kristen Protestan">Kristen Protestan</option>
+                                <option value="Hindu">Hindu</option>
+                                <option value="Buddha">Buddha</option>
+                                <option value="Kong Hu Chu">Kong Hu Chu</option>
+                            </select>
+                        </div>
+                        
+                        <label for="Lalamat" class="form-label">ALAMAT</label>
+                        <div class="mb-3">
+                            <textarea type="text" class="form-control" name="alamat" id="Lalamat" placeholder="Masukan Alamat Guru" autocomplete="off"><?= $data['alamat'] ?></textarea>
+                        </div>
+                        </div>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" name="beditGuru">Ubah Data</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                </div>
+                </form>
+            </div>
+        </div>
+        </div>
+
+        <div class="modal fade" id="modalHapusGuru<?= $number ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria_labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Hapus Data Guru</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="proses.php" method="post">
+                    <input type="hidden" class="form-control" name="id_guru" value="<?= $dataGuru['id_guru'] ?>">
+                    <h4 class="text-center">Yakin Ingin Menghapus Data Ini?</h4>
+                    <br>
+                    <h5 class="text-center text-danger"><?= $dataGuru['nip'] ?> - <?= $dataGuru['nama'] ?></h5>
+                </div>
+                <div class="modal-footer">
+                    <a href="hapus_dashboard_admin.php?id_guru=<?php echo $data['id_guru']; ?>" class="btn btn-primary">Hapus Data</a>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                </div>
+                </form>
+            </div>
+        </div>
+        </div>
+
+                    <?php endwhile; ?>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="modal fade" id="modalTambahGuru" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria_labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Tambah Data Guru</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="proses.php" method="post">
+                        <div class="row">
+
+                        <div class="col">
+                        <div class="mb-3">
+                            <label for="Lnip" class="form-label">NIP</label>
+                            <input type="number" class="form-control" name="nip" id="Lnip" placeholder="Masukan NIP Guru" autocomplete="off">
+                        </div>
+                        <div class="mb-3">
+                            <label for="Lnama" class="form-label">NAMA</label>
+                            <input type="text" class="form-control" name="nama" id="Lnama" placeholder="Masukan Nama Guru" autocomplete="off">
+                        </div>
+                        <label for="LtempatLahir" class="form-label">TEMPAT LAHIR</label>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" name="tempat_lahir" id="LtempatLahir" placeholder="Masukan Tempat Lahir" autocomplete="off">
+                        </div>
+                        <div class="mb-3">
+                            <label for="LtglLahir" class="form-label">TANGGAL LAHIR</label>
+                            <input type="date" class="form-control" name="tgl_lahir" id="LtglLahir" autocomplete="off">
+                        </div>
+                        </div>
+
+                        <div class="col">
+                        <div class="mb-3">
+                            <label for="Ljk" class="form-label">JENIS KELAMIN</label>
+                            <select name="jenis_kelamin" class="form-select" id="Ljk" placeholder="Pilih Jenis Kelamin" autocomplete="off">
+                                <option disabled selected value="">Pilih Jenis Kelamin</option>
+                                <option value="Laki-laki">Laki-laki</option>
+                                <option value="Perempuan">Perempuan</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="Lagama" class="form-label">AGAMA</label>
+                            <select name="agama" id="Lagama" class="form-select" placeholder="Pilih Agama Siswa" autocomplete="off">
+                                <option disabled selected value="">Pilih Agama Guru</option>
+                                <option value="Islam">Islam</option>
+                                <option value="Kristen Katolik">Kristen Katolik</option>
+                                <option value="Kristen Protestan">Kristen Protestan</option>
+                                <option value="Hindu">Hindu</option>
+                                <option value="Buddha">Buddha</option>
+                                <option value="Kong Hu Chu">Kong Hu Chu</option>
+                            </select>
+                        </div>
+                        
+                        <label for="Lalamat" class="form-label">ALAMAT</label>
+                        <div class="mb-3">
+                            <textarea type="text" class="form-control" name="alamat" id="Lalamat" placeholder="Masukan Alamat Guru" autocomplete="off"></textarea>
+                        </div>
+                        </div>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" name="bsimpanGuru">Simpan Data</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+
     <div class="modal fade" id="modalLogout" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria_labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
