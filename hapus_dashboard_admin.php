@@ -14,4 +14,19 @@ if($hapus){
             </script>";
 
 }
+
+$id_guru = $_GET['id_guru'];
+$hapusGuru = mysqli_query($connection,"DELETE FROM guru WHERE id_guru='$id_guru'");
+if($hapusGuru){
+    echo "<script>
+                alert('Hapus data berhasil!');
+                document.location='dashboard_admin.php';
+                </script>";
+}  else{
+    echo "<script>
+                alert('Hapus data gagal!');
+                document.location='dashboard_admin.php';
+            </script>";
+
+}
 ?>

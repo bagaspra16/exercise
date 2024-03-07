@@ -31,7 +31,7 @@ if ($_SESSION['id_user'] == 1) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Sistem Informasi RPL - Beranda</title>
+    <title>Sistem Informasi RPL - Dashboard Guru</title>
     <link rel="shortcut icon" href="assets/rpl_logo.png" type="image/x-icon">
     <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -55,8 +55,15 @@ if ($_SESSION['id_user'] == 1) {
             </div>
             <div class="card-body">
 
-                <button type="button" class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#modalTambah" style="width:10%">
+            <div class="row gx-0 gx-lg-1">
+                <div class="col-lg-1">
+                <button type="button" class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#modalTambah" style="width:140%">
                 + Data Siswa</button>
+                </div>
+                <div class="col-lg-3 ms-5">
+                <a href="pdf_siswa.php" class="btn btn-danger mb-3" style="width:60%">Generate Laporan</a>
+                </div>
+                </div>
 
                 <table class="table table-striped table-bordered table-hover">
                     <tr>
@@ -68,7 +75,8 @@ if ($_SESSION['id_user'] == 1) {
                         <th>JENIS KELAMIN</th>
                         <th>AGAMA</th>
                         <th>ALAMAT</th>
-                        <th>AKSI</th>
+                        <th>EDIT</th>
+                        <th>HAPUS</th>
                     </tr>
                     <?php        
                         $no = 1;
@@ -85,10 +93,10 @@ if ($_SESSION['id_user'] == 1) {
                         <td><?= $data['agama']?></td>
                         <td><?= $data['alamat']?></td>
                         <td>
-                            <center>
                             <a class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalEdit<?= $no ?>">Ubah</a>
-                            <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalHapus<?= $no ?>">Hapus</a>
-                            </center>
+                        </td>
+                        <td>
+                        <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalHapus<?= $no ?>">Hapus</a>
                         </td>
                     </tr>
 
@@ -100,7 +108,7 @@ if ($_SESSION['id_user'] == 1) {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="proses.php" method="post">
+                    <form action="proses_guru.php" method="post">
                     <input type="hidden" class="form-control" name="id_siswa" value="<?= $data['id_siswa'] ?>">
                         <div class="row">
 
@@ -119,7 +127,7 @@ if ($_SESSION['id_user'] == 1) {
                         </div>
                         <div class="mb-3">
                             <label for="LtglLahir" class="form-label">TANGGAL LAHIR</label>
-                            <input type="date" class="form-control" name="tgl_lahir" id="LtglLahir"  value="<?= $data['tgl_lahir'] ?>" autocomplete="off">
+                            <input type="date" class="form-control" name="tgl_lahir" id="LtglLahir"  value="<?= date('y-m-d', strtotime($data['tgl_lahir'])) ?>" autocomplete="off">
                         </div>
                         </div>
 
@@ -170,14 +178,14 @@ if ($_SESSION['id_user'] == 1) {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="proses.php" method="post">
+                    <form action="proses_guru.php" method="post">
                     <input type="hidden" class="form-control" name="id_siswa" value="<?= $data['id_siswa'] ?>">
                     <h4 class="text-center">Yakin Ingin Menghapus Data Ini?</h4>
                     <br>
                     <h5 class="text-center text-danger"><?= $data['nis'] ?> - <?= $data['nama'] ?></h5>
                 </div>
                 <div class="modal-footer">
-                    <a href="hapus_dashboard_admin.php?id_siswa=<?php echo $data['id_siswa']; ?>" class="btn btn-primary">Hapus Data</a>
+                    <a href="hapus_dashboard_guru.php?id_siswa=<?php echo $data['id_siswa']; ?>" class="btn btn-primary">Hapus Data</a>
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
                 </div>
                 </form>
@@ -200,7 +208,7 @@ if ($_SESSION['id_user'] == 1) {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="proses.php" method="post">
+                    <form action="proses_guru.php" method="post">
                         <div class="row">
 
                         <div class="col">

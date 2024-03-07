@@ -1,9 +1,12 @@
+<?php
+include "koneksi.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Sistem Informasi RPL - Event</title>
+    <title>Sistem Informasi RPL - Data Siswa</title>
     <link rel="shortcut icon" href="assets/rpl_logo.png" type="image/x-icon">
     <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -14,57 +17,53 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="nav-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0" style="font-weight: bolder;">
-                <li class="nav-item"><a class="nav-link" aria-current="page" href="index.html">Beranda</a></li>
-                <li class="nav-item"><a class="nav-link active" href="event.html">Event</a></li>
-                <li class="nav-item"><a class="nav-link" href="siswa.php">Siswa</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.html">Beranda</a></li>
+                <li class="nav-item"><a class="nav-link" href="event.html">Event</a></li>
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="siswa.php">Siswa</a></li>
                 <li class="nav-item"><a class="nav-link" href="guru.php">Guru</a></li>
-                <li class="nav-item"><a class="nav-link btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modalLogin" style="width: fit-content;">Login</a></li>  
+                <li class="nav-item"><a class="nav-link btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modalLogin" style="width: fit-content;">Login</a></li>        
             </ul>
         </div>
     </nav>
 
     <div class="container px-4 px-lg-5">
 
-        <div class="row gx-4 gx-lg-5 my-4 align-items-center">
-            <div class="col-lg-7">
-                <img class="img-fluid mb-4 mb-lg-0" src="assets/foto_3.jpg" alt="">
+    <div class="card my-3">
+            <div class="card-header text_dark">
+                <h1 style="font-weight:bolder;">Data Siswa</h1>
             </div>
-            <div class="col-lg-5">
-                <h1 style="font-weight: bolder;">Pensi RPL!</h1>
-                <p>Jurusan RPL baru-baru ini mengadakan pentas seni yang menampilkan seluruh penampilan terbaik dari masing-masing siswa yang ada dijurusan RPL.</p>
+            <div class="card-body">
+
+                <table class="table table-striped table-bordered table-hover">
+                    <tr>
+                        <th>NO</th>
+                        <th>NIS</th>
+                        <th>NAMA</th>
+                        <th>TEMPAT LAHIR</th>
+                        <th>TANGGAL LAHIR</th>
+                        <th>JENIS KELAMIN</th>
+                        <th>AGAMA</th>
+                        <th>ALAMAT</th>
+                    </tr>
+                    <?php        
+                        $no = 1;
+                        $tampil = mysqli_query($connection,"SELECT * FROM siswa ORDER BY id_siswa DESC");
+                        while($data = mysqli_fetch_array($tampil)) :
+                        ?>
+                    <tr>
+                        <td><?= $no++ ?>.</td>
+                        <td><?= $data['nis']?></td>
+                        <td><?= $data['nama']?></td>
+                        <td><?= $data['tempat_lahir']?></td>
+                        <td><?= $data['tgl_lahir']?></td>
+                        <td><?= $data['jenis_kelamin']?></td>
+                        <td><?= $data['agama']?></td>
+                        <td><?= $data['alamat']?></td>
+                    </tr>
+                    <?php endwhile; ?>
+                </table>
             </div>
         </div>
-
-        <div class="row gx-4 gx-lg-5 my-4 align-items-center">
-            <div class="col-lg-5">
-                <h1 style="font-weight: bolder;">Sinkronisasi Kurikulum</h1>
-                <p>Beberapa waktu lalu, PT. Mikro Patriot Nusantara melakukan sinkronisasi kurikulum guna menunjang perkembangan sistem pembelajaran yang ada dijurusan RPL.</p>
-            </div>
-            <div class="col-lg-7">
-                <img class="img-fluid mb-4 mb-lg-0" src="assets/foto_2.jpg" alt="">
-            </div>
-        </div>
-
-        <div class="row gx-4 gx-lg-5 my-4 align-items-center">
-            <div class="col-lg-7">
-                <img class="img-fluid mb-4 mb-lg-0" src="assets/foto_5.jpg" alt="">
-            </div>
-            <div class="col-lg-5">
-                <h1 style="font-weight: bolder;">Kegiatan ABM</h1>
-                <p>Kegiatan Asesmen Minat & Bakat diadakan dilab RPL sebagai penilaian untuk para siswa berprestasi mengenai kemampuan & minat apa yang dominan ada pada masing-masing siswa diSMK Negeri 5 Kota Bekasi</p>
-            </div>
-        </div>
-
-        <div class="row gx-4 gx-lg-5 my-4 align-items-center">
-            <div class="col-lg-5">
-                <h1 style="font-weight: bolder;">Peresmian Techno Park</h1>
-                <p>Bersamaan dengan dimeriahkannya hari Bulan Bahasa & P5, SMK Negeri 5 Kota Bekasi juga meresmikan gedung yang belum lama ini sudah direncanakan sebagai akses untuk para siswa SMK Negeri 5 Kota Bekasi menaruh hasil karyanya serta sebagai simbolis perkembangan infrastruktur di SMK Negeri 5 Kota Bekasi, gedung tersebut diberi nama "Techno Park".</p>
-            </div>
-            <div class="col-lg-7">
-                <img class="img-fluid mb-4 mb-lg-0" src="assets/foto_6.jpg" alt="">
-            </div>
-        </div>
-
     </div>
 
     <div class="modal fade" id="modalLogin" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria_labelledby="staticBackdropLabel" aria-hidden="true">

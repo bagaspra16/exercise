@@ -15,12 +15,12 @@ if (isset($_POST['bsimpan'])){
     if($simpan){
         echo "<script>
                     alert('Simpan data berhasil!');
-                    document.location='dashboard_admin.php';
+                    document.location='dashboard_guru.php';
                     </script>";
     }  else{
         echo "<script>
                     alert('Simpan data gagal!');
-                    document.location='dashboard_admin.php';
+                    document.location='dashboard_guru.php';
                 </script>";
     }                                          
 }
@@ -40,12 +40,12 @@ if (isset($_POST['bedit'])){
     if($edit){
         echo "<script>
                     alert('Edit data berhasil!');
-                    document.location='dashboard_admin.php';
+                    document.location='dashboard_guru.php';
                     </script>";
     }  else{
         echo "<script>
                     alert('Edit data gagal!');
-                    document.location='dashboard_admin.php';
+                    document.location='dashboard_guru.php';
                 </script>";
     }                                          
 }
