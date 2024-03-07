@@ -19,7 +19,7 @@
                 <li class="nav-item"><a class="nav-link" href="">Siswa</a></li>
                 <li class="nav-item"><a class="nav-link" href="">Guru</a></li>
                 <li class="nav-item"><a class="nav-link" href="">Mapel</a></li>
-                <li class="nav-item"><a class="nav-link btn btn-outline-secondary" href="dashboard_admin.php" style="width: fit-content;">Login</a></li>        
+                <li class="nav-item"><a class="nav-link btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modalLogin" style="width: fit-content;">Login</a></li>        
             </ul>
         </div>
     </nav>
@@ -62,6 +62,33 @@
         </div>
 
     </div>
+
+    <div class="modal fade" id="modalLogin" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria_labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Login User</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="cek_login.php" method="post">
+                        <div class="mb-3">
+                            <label for="Lusername" class="form-label">Username</label>
+                            <input type="text" class="form-control" name="username" id="Lusername" placeholder="Masukan Username Admin" autocomplete="off">
+                        </div>
+                        <div class="mb-3">
+                            <label for="Lpassword" class="form-label">Password</label>
+                            <input type="password" class="form-control" name="password" id="Lpassword" placeholder="Masukan Password Admin" autocomplete="off">
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Masuk</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                </div>
+                </form>
+            </div>
+        </div>
+        </div>
 
     <footer class="bg-dark text-center text-white">
         <div class="text-center p-4" style="background-color: rgba(26, 26, 26, 0.527);">
