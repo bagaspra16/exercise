@@ -50,7 +50,7 @@ if ($_SESSION['id_user'] == 1) {
 
     <div class="container px-4 px-lg-5">
         <div class="card my-3">
-            <div class="card-header text_dark">
+            <div class="card-header text-dark">
                 <h1 style="font-weight:bolder;">Dashboard Data Siswa</h1>
             </div>
             <div class="card-body">
@@ -108,7 +108,7 @@ if ($_SESSION['id_user'] == 1) {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="proses.php" method="post">
+                    <form action="proses_admin.php" method="post">
                     <input type="hidden" class="form-control" name="id_siswa" value="<?= $data['id_siswa'] ?>">
                         <div class="row">
 
@@ -271,7 +271,7 @@ if ($_SESSION['id_user'] == 1) {
     <!------------------------------------------------------------------CRUD GURU--------------------------------------------------------->
 
     <div class="card my-3">
-            <div class="card-header text_dark">
+            <div class="card-header text-dark">
                 <h1 style="font-weight:bolder;">Dashboard Data Guru</h1>
             </div>
             <div class="card-body">

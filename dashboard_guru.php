@@ -50,7 +50,7 @@ if ($_SESSION['id_user'] == 1) {
 
     <div class="container px-4 px-lg-5">
         <div class="card my-3">
-            <div class="card-header text_dark">
+            <div class="card-header text-dark">
                 <h1 style="font-weight:bolder;">Dashboard Data Siswa</h1>
             </div>
             <div class="card-body">
@@ -96,7 +96,7 @@ if ($_SESSION['id_user'] == 1) {
                             <a class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalEdit<?= $no ?>">Ubah</a>
                         </td>
                         <td>
-                        <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalHapus<?= $no ?>">Hapus</a>
+                            <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalHapus<?= $no ?>">Hapus</a>
                         </td>
                     </tr>
 
