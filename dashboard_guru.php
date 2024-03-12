@@ -43,7 +43,7 @@ if ($_SESSION['id_user'] == 1) {
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0" style="font-weight: bolder;">
                 <li class="nav-item"><a class="nav-link text-muted" href="">User : Guru</a></li>
-                <li class="nav-item"><a class="nav-link btn btn-outline-danger" href="index.html" style="width: fit-content;" data-bs-toggle="modal" data-bs-target="#modalLogout">Logout</a></li>        
+                <li class="nav-item me-3"><a class="nav-link btn btn-outline-danger rounded-0" href="index.html" style="width: fit-content;" data-bs-toggle="modal" data-bs-target="#modalLogout">Logout</a></li>        
             </ul>
         </div>
     </nav>
@@ -279,7 +279,9 @@ if ($_SESSION['id_user'] == 1) {
                 <div class="modal-body">
                     <form action="logout.php" method="post">
                     <br>
-                    <h5 class="text-center text-danger">Yakin ingin keluar dari halaman dashboard?</h5>
+                    <br>
+                    <h5 class="text-center">Yakin ingin keluar dari halaman dashboard?</h5>
+                    <p class="text-center text-danger" >(Sesi guru akan terhenti!)</p>
                     <br>
                 </div>
                 <div class="modal-footer">

@@ -12,7 +12,6 @@ include "koneksi.php";
 </head>
 <body onload="print()">
 
-    <div class="container px-4 px-lg-5">
 
     <div class="card my-5">
             <div class="card-header text_dark">
@@ -52,7 +51,6 @@ include "koneksi.php";
                 </table>
             </div>
         </div>
-    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/scripts.js"></script>

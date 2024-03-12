@@ -21,7 +21,7 @@ include "koneksi.php";
                 <li class="nav-item"><a class="nav-link" href="event.html">Event</a></li>
                 <li class="nav-item"><a class="nav-link active" aria-current="page" href="siswa.php">Siswa</a></li>
                 <li class="nav-item"><a class="nav-link" href="guru.php">Guru</a></li>
-                <li class="nav-item"><a class="nav-link btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modalLogin" style="width: fit-content;">Login</a></li>        
+                <li class="nav-item me-3"><a class="nav-link btn btn-outline-secondary rounded-0" data-bs-toggle="modal" data-bs-target="#modalLogin" style="width: fit-content;">Login</a></li>        
             </ul>
         </div>
     </nav>
@@ -37,13 +37,11 @@ include "koneksi.php";
                 <table class="table table-striped table-bordered table-hover">
                     <tr>
                         <th>NO</th>
-                        <th>NIS</th>
                         <th>NAMA</th>
                         <th>TEMPAT LAHIR</th>
                         <th>TANGGAL LAHIR</th>
                         <th>JENIS KELAMIN</th>
                         <th>AGAMA</th>
-                        <th>ALAMAT</th>
                     </tr>
                     <?php        
                         $no = 1;
@@ -52,13 +50,11 @@ include "koneksi.php";
                         ?>
                     <tr>
                         <td><?= $no++ ?>.</td>
-                        <td><?= $data['nis']?></td>
                         <td><?= $data['nama']?></td>
                         <td><?= $data['tempat_lahir']?></td>
                         <td><?= $data['tgl_lahir']?></td>
                         <td><?= $data['jenis_kelamin']?></td>
                         <td><?= $data['agama']?></td>
-                        <td><?= $data['alamat']?></td>
                     </tr>
                     <?php endwhile; ?>
                 </table>
